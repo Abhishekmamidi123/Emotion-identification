@@ -1,0 +1,40 @@
+#### 1 ####
+No validation set.
+
+model = Sequential()
+model.add(Embedding(number_of_words, embedding_vector_length, input_length = max_length_of_input))
+# Uncomment the below line if you want to use Dropout
+# model.add(Dropout(0.2))
+model.add(LSTM(100))
+model.add(Dense(6, activation = 'sigmoid'))
+model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
+print(model.summary())
+
+10 epochs - 0.8609
+50 epochs - 0.9977
+
+##################### 2 ###########################
+No validation set:
+
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_18 (Embedding)     (None, 200, 32)           235776    
+_________________________________________________________________
+dropout_7 (Dropout)          (None, 200, 32)           0         
+_________________________________________________________________
+lstm_23 (LSTM)               (None, 200, 100)          53200     
+_________________________________________________________________
+dropout_8 (Dropout)          (None, 200, 100)          0         
+_________________________________________________________________
+lstm_24 (LSTM)               (None, 100)               80400     
+_________________________________________________________________
+dense_14 (Dense)             (None, 6)                 606       
+=================================================================
+Total params: 369,982
+Trainable params: 369,982
+Non-trainable params: 0
+
+30 epochs - 0.9921
+
+Validation set:
+30 epochs - 
